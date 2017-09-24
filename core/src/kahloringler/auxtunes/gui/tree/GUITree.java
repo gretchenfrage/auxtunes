@@ -1,4 +1,4 @@
-package kahloringler.auxtunes.guitree;
+package kahloringler.auxtunes.gui.tree;
 
 import java.util.UUID;
 

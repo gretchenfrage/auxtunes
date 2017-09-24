@@ -1,7 +1,7 @@
 package kahloringler.auxtunes;
 
-import kahloringler.auxtunes.guitree.GUITree;
-import kahloringler.auxtunes.guitree.InputEvent;
+import kahloringler.auxtunes.gui.tree.GUITree;
+import kahloringler.auxtunes.gui.InputEvent;
 
 import java.util.List;
 import java.util.Optional;

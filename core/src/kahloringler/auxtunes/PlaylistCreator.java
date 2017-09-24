@@ -1,6 +1,6 @@
 package kahloringler.auxtunes;
 
-import kahloringler.auxtunes.guitree.GUITree;
+import kahloringler.auxtunes.gui.tree.GUITree;
 
 import java.util.Optional;
 
