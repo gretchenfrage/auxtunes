@@ -1,7 +1,8 @@
 package kahloringler.auxtunes;
 
-import kahloringler.auxtunes.gui.tree.GUITree;
+import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import kahloringler.auxtunes.gui.InputEvent;
+import kahloringler.auxtunes.gui.WidgetFactory;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +10,10 @@ import java.util.UUID;
 
 public interface ScreenState {
 
-    GUITree getGUITree();
+    Widget getGUITree(WidgetFactory factory);
 
-    Optional<GUITree> update();
+    Optional<Widget> update(WidgetFactory factory);
 
-    Optional<GUITree> onInput(List<UUID> guiPath, InputEvent event);
+    Optional<Widget> onInput(List<UUID> guiPath, InputEvent event, WidgetFactory factory);
 
 }
