@@ -16,9 +16,9 @@ import java.util.concurrent.LinkedBlockingDeque;
 
 public class AcceptanceTest extends ApplicationAdapter {
 
-    public static void run(ApplicationListener listener, String description) {
+    public void acceptanceTest() {
         // spawn the app
-        Application app = new LwjglApplication(listener, new LwjglApplicationConfiguration());
+        Application app = new LwjglApplication(this, new LwjglApplicationConfiguration());
 
         // create a result queue
         BlockingQueue<Boolean> result = new LinkedBlockingDeque<>();
@@ -26,9 +26,7 @@ public class AcceptanceTest extends ApplicationAdapter {
         // spawn the acceptance dialog
         JFrame jframe = new JFrame("Acceptance Test");
         JPanel jpanel = new JPanel();
-        //JList jlist = new JList();
-        //jlist.add(new JLabel(description));
-        jpanel.add(new JLabel(description));
+        jpanel.add(new JLabel(getClass().getSimpleName()));
         JButton accept = new JButton("Pass Test");
         accept.addActionListener(new ActionListener() {
             @Override
@@ -37,7 +35,6 @@ public class AcceptanceTest extends ApplicationAdapter {
             }
         });
         jpanel.add(accept);
-        //jlist.add(accept);
         JButton fail = new JButton("Fail Test");
         fail.addActionListener(new ActionListener() {
             @Override
@@ -46,7 +43,6 @@ public class AcceptanceTest extends ApplicationAdapter {
             }
         });
         jpanel.add(fail);
-        //jlist.add(fail);
 
         jframe.setContentPane(jpanel);
         jframe.pack();

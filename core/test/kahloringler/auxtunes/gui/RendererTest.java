@@ -1,16 +1,37 @@
 package kahloringler.auxtunes.gui;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import kahloringler.auxtunes.AcceptanceTest;
-import kahloringler.auxtunes.AuxTunes;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+public abstract class RendererTest extends AcceptanceTest {
 
-public class RendererTest {
+    protected Renderer renderer;
+    protected WidgetFactory factory;
+
+    public abstract Widget make();
 
     @Test
     public void testHandler() {
-        AcceptanceTest.run(new AuxTunes(), "renderer test");
+        super.acceptanceTest();
+    }
+
+    @Override
+    public void create() {
+        renderer = new Renderer();
+        factory = new WidgetFactory();
+        renderer.update(make());
+    }
+
+    @Override
+    public void render() {
+        renderer.draw();
+    }
+
+    @Override
+    public void dispose() {
+        renderer.dispose();
+        factory.dispose();
     }
 
 }
