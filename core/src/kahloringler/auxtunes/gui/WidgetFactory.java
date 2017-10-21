@@ -2,17 +2,29 @@ package kahloringler.auxtunes.gui;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class WidgetFactory implements Disposable {
+
+    public static int colorToRGBA8888(Color color) {
+        return (((int) (color.r * 255)) << 24) |
+                (((int) (color.g * 255)) << 16) |
+                (((int) (color.b * 255)) << 8) |
+                ((int) (color.a * 255));
+    }
 
     private interface ResourceDescriptor<E extends Disposable> {
         E generate();
@@ -53,6 +65,18 @@ public class WidgetFactory implements Disposable {
             return generator.generateFont(parameter);
         }
     }
+    private class MonochromeTextureDescriptor implements ResourceDescriptor<Texture> {
+        Color color;
+        public MonochromeTextureDescriptor(Color color) {
+            this.color = color;
+        }
+        @Override
+        public Texture generate() {
+            Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+            pixmap.drawPixel(0, 0, colorToRGBA8888(color));
+            return new Texture(pixmap);
+        }
+    }
 
     private Map<ResourceDescriptor<?>, Disposable> resources = new HashMap<>();
 
@@ -75,6 +99,14 @@ public class WidgetFactory implements Disposable {
 
     public Table table() {
         return new Table();
+    }
+
+    public Texture monochromeTexture(Color color) {
+        return resource(new MonochromeTextureDescriptor(color));
+    }
+
+    public Drawable monochromeBackground(Color color) {
+        return new TextureRegionDrawable(new TextureRegion(monochromeTexture(color)));
     }
 
     @Override
