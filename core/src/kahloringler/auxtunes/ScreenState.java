@@ -1,6 +1,7 @@
 package kahloringler.auxtunes;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
+import kahloringler.auxtunes.gui.GUIPath;
 import kahloringler.auxtunes.gui.InputEvent;
 import kahloringler.auxtunes.gui.WidgetFactory;
 
@@ -14,6 +15,6 @@ public interface ScreenState {
 
     Optional<Widget> update(WidgetFactory factory);
 
-    Optional<Widget> onInput(List<UUID> guiPath, InputEvent event, WidgetFactory factory);
+    Optional<Widget> onInput(GUIPath guiPath, InputEvent event, WidgetFactory factory);
 
 }

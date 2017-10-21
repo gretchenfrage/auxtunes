@@ -13,6 +13,10 @@ public class Renderer implements Disposable {
         stage.addActor(toDisplay);
     }
 
+    public void draw() {
+        stage.draw();
+    }
+
     @Override
     public void dispose() {
         stage.dispose();

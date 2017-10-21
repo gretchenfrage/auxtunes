@@ -1,6 +1,7 @@
 package kahloringler.auxtunes;
 
-import kahloringler.auxtunes.gui.tree.GUITree;
+import com.badlogic.gdx.scenes.scene2d.ui.Widget;
+import kahloringler.auxtunes.gui.WidgetFactory;
 
 import java.util.Optional;
 
@@ -8,7 +9,7 @@ public interface PlaylistCreator {
 
     String getTypeName();
 
-    GUITree getGUITree();
+    Widget getGUI(WidgetFactory factory);
 
     Optional<Playlist> create();
 
